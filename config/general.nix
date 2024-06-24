@@ -58,7 +58,6 @@
 
   # Disable the highlight after pressing <Esc> in Normal mode.
   opts.hlsearch = true;
-  keymaps = [{ action = "<cmd>nohlsearch<CR>"; key = "<Esc>"; mode = "n"; }];
 
   # Highlight when we copy the text.
   autoCmd = [{
@@ -69,4 +68,38 @@
   }];
   autoGroups.highlight-yank.clear = true;
 
+  # yank ring/kill ring
+  plugins.yanky = {
+    enable = true;
+    picker.telescope.enable = true;
+    # We could move the cursor around and still be able to cycle through the ring
+    ring.cancelEvent = "update";
+  };
+
+  keymaps = [
+    # Disable search highlight after the Esc.
+    { action = "<cmd>nohlsearch<CR>"; key = "<Esc>"; mode = "n"; }
+
+    # Yanky ring
+    {
+      mode = "n";
+      key = "<C-p>";
+      action = "<Plug>(YankyPreviousEntry)";
+    }
+    {
+      mode = "n";
+      key = "<C-n>";
+      action = "<Plug>(YankyNextEntry)";
+    }
+    {
+      mode = [ "n" "x" ];
+      key = "p";
+      action = "<Plug>(YankyPutAfter)";
+    }
+    {
+      mode = [ "n" "x" ];
+      key = "P";
+      action = "<Plug>(YankyPutBefore)";
+    }
+  ];
 }

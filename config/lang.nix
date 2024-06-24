@@ -9,6 +9,7 @@
         "K" = "hover";
         "<leader>rn" = "rename";
       };
+      # Integerate with telescoep.
       extra = [
         { key = "gd"; action.__raw = "require('telescope.builtin').lsp_definitions"; }
         { key = "gI"; action.__raw = "require('telescope.builtin').lsp_implementations"; }
@@ -17,6 +18,7 @@
         { key = "<leader>ws"; action.__raw = "require('telescope.builtin').lsp_dynamic_workspace_symbols"; }
       ];
     };
+    # Declare extra capabilities, copied from kickstart.nvim
     capabilities = ''
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
@@ -29,12 +31,31 @@
       nil-ls.enable = true;
 
       # Rust LSP
-      rust-analyzer.enable = true;
+      rust-analyzer = {
+        enable = false;
+        installCargo = false;
+        installRustc = false;
+      };
 
       # Python LSP
       ruff.enable = true;
       ruff-lsp.enable = true;
     };
+  };
+
+
+  plugins.nvim-ufo = {
+    enable = true;
+    providerSelector = "function(bufnr, filetype, buftype)
+        return {'treesitter', 'indent'}
+    end";
+  };
+
+  opts = {
+    foldcolumn = "1";
+    foldlevel = 99;
+    foldlevelstart = 99;
+    foldenable = true;
   };
 
   plugins.cmp = {
@@ -65,11 +86,14 @@
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
         })
       '';
     };
   };
+
+  plugins.rustaceanvim.enable = true;
+
   plugins = {
     cmp-nvim-lsp.enable = true;
     cmp-nvim-lua.enable = true;
@@ -84,6 +108,7 @@
     # By default this uses nixGrammar and installs all grammars available.
     enable = true;
     indent = true;
+    incrementalSelection.enable = true;
   };
 
   plugins.conform-nvim = {
@@ -105,4 +130,14 @@
       "_" = [ "trim_whitespace" ];
     };
   };
+
+  # Jump between LSP diagnostics.
+  keymaps = [
+    { mode = "n"; key = "zR"; action.__raw = "require('ufo').openAllFolds"; }
+    { mode = "n"; key = "zM"; action.__raw = "require('ufo').closeAllFolds"; }
+    { mode = "n"; key = "[d"; action.__raw = "vim.diagnostic.goto_prev"; options.desc = "Go to previous [D]iagnostic message"; }
+    { mode = "n"; key = "]d"; action.__raw = "vim.diagnostic.goto_next"; options.desc = "Go to next [D]iagnostic message"; }
+    { mode = "n"; key = "<leader>e"; action.__raw = "vim.diagnostic.open_float"; options.desc = "Show diagnostic [E]rror messages"; }
+    { mode = "n"; key = "<leader>q"; action.__raw = "vim.diagnostic.setloclist"; options.desc = "Open diagnostic [Q]uickfix list"; }
+  ];
 }
