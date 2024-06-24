@@ -21,12 +21,18 @@
     { key = "<leader>sr"; action = "<cmd>Telescope resume <CR>"; mode = "n"; options.desc = "[S]earch [R] esume"; }
     { key = "<leader>s."; action = "<cmd>Telescope oldfiles <CR>"; mode = "n"; options.desc = "[S]earch Recent Files (\".\" for repeat)"; }
     { key = "<leader><leader>"; action = "<cmd>Telescope buffers <CR>"; mode = "n"; options.desc = "[ ] Find existing buffers"; }
+    {
+      key = "<leader>/";
+      action.__raw = "function()
+        -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+        local builtin = require 'telescope.builtin'
+        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+          winblend = 10,
+          previewer = false,
+        })
+      end";
+      mode = "n";
+      options.desc = "[/] Fuzzily search in current buffer";
+    }
   ];
 }
-
-
-
-
-
-
-
