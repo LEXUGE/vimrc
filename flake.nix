@@ -18,6 +18,10 @@
         "aarch64-darwin"
       ];
 
+      flake.overlays.default = (final: prev: {
+        nvim = self.packages.${prev.system}.nvim;
+      });
+
       perSystem =
         { pkgs, system, ... }:
         let
@@ -45,6 +49,7 @@
               };
             };
           };
+
           devShells.default = pkgs.mkShell {
             inherit (self.checks.${system}.pre-commit-check) shellHook;
             nativeBuildInputs = [ self.packages.${system}.nvim ];
