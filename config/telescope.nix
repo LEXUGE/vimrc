@@ -28,7 +28,17 @@
     }
     { key = "<leader>ss"; action = "<cmd>Telescope builtin <CR>"; mode = "n"; options.desc = "[S]earch [S]elect Telescope"; }
     { key = "<leader>sw"; action = "<cmd>Telescope grep_string <CR>"; mode = "n"; options.desc = "[S]earch current [W]ord"; }
-    { key = "<leader>sg"; action = "<cmd>Telescope live_grep <CR>"; mode = "n"; options.desc = "[S]earch by [G]rep"; }
+    {
+      key = "<leader>sg";
+      action.__raw = "function()
+            local builtin = require(\"telescope.builtin\")
+            local utils = require(\"telescope.utils\")
+            builtin.live_grep({ cwd = utils.buffer_dir() }) 
+          end
+        ";
+      mode = "n";
+      options.desc = "[S]earch by [G]rep";
+    }
     { key = "<leader>sd"; action = "<cmd>Telescope diagnostics <CR>"; mode = "n"; options.desc = "[S]earch [D]iagnostics"; }
     { key = "<leader>sr"; action = "<cmd>Telescope resume <CR>"; mode = "n"; options.desc = "[S]earch [R]esume"; }
     { key = "<leader>s."; action = "<cmd>Telescope oldfiles <CR>"; mode = "n"; options.desc = "[S]earch Recent Files (\".\" for repeat)"; }
