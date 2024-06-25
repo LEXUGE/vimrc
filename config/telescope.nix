@@ -20,12 +20,14 @@
   keymaps = [
     { key = "<leader>sh"; action = "<cmd>Telescope help_tags <CR>"; mode = "n"; options.desc = "[S]earch [H]elp"; }
     { key = "<leader>sk"; action = "<cmd>Telescope keymaps <CR>"; mode = "n"; options.desc = "[S]earch [K]eymaps"; }
+    # git_files always launch from the .gitignore, so behaves pretty much like a "search project" functionality.
+    { key = "<leader>sp"; action = "<cmd>Telescope git_files <CR>"; mode = "n"; options.desc = "[S]earch Git [P]roject"; }
     {
       key = "<leader>sf";
       action.__raw = "function()
             local builtin = require(\"telescope.builtin\")
             local utils = require(\"telescope.utils\")
-            builtin.git_files({ cwd = vim.fn.input(\"Folder to search in: \", utils.buffer_dir(), \"file\") })
+            builtin.find_files({ cwd = vim.fn.input(\"Folder to search in: \", utils.buffer_dir(), \"file\") })
           end
         ";
       mode = "n";
