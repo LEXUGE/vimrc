@@ -13,3 +13,5 @@
 # Vim basics
 ## Navigation
 - Scroll other windows without shifting focus:
+## Command line
+- Just use the emacs keybindings. Though <kbd>M-b</kbd> doesn't work in command line mode.

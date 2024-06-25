@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   opts = {
     # Make line numbers default
     number = true;
@@ -76,7 +76,14 @@
     ring.cancelEvent = "update";
   };
 
+  # Use emacs style binding in insert and command line mode
+  extraPlugins = [ pkgs.vimPlugins.vim-rsi ];
+
   keymaps = [
+    # Use emacs like keymap in insert mode for navigation
+    { mode = "i"; key = "<C-p>"; action = "<Up>"; }
+    { mode = "i"; key = "<C-n>"; action = "<Down>"; }
+
     # Disable search highlight after the Esc.
     { action = "<cmd>nohlsearch<CR>"; key = "<Esc>"; mode = "n"; }
 
