@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  extraPackages = with pkgs; [ hackgen-nf-font stylua black nixpkgs-fmt ];
+  extraPackages = with pkgs; [ stylua black nixpkgs-fmt ];
   plugins.lsp = {
     enable = true;
     inlayHints = true;
@@ -32,7 +32,7 @@
 
       # Rust LSP
       rust-analyzer = {
-        enable = false;
+        enable = true;
         installCargo = false;
         installRustc = false;
       };
@@ -92,7 +92,7 @@
     };
   };
 
-  plugins.rustaceanvim.enable = true;
+  # plugins.rustaceanvim.enable = true;
 
   plugins = {
     cmp-nvim-lsp.enable = true;
@@ -111,6 +111,7 @@
     incrementalSelection.enable = true;
   };
 
+  # Formatting
   plugins.conform-nvim = {
     enable = true;
     formatOnSave = {

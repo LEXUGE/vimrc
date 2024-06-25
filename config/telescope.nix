@@ -4,7 +4,13 @@
     extensions = {
       fzf-native.enable = true;
       ui-select.enable = true;
-      file-browser.enable = true;
+      file-browser = {
+        enable = true;
+        settings = {
+          dir_icon = "D";
+          prompt_path = true;
+        };
+      };
     };
   };
 
@@ -14,13 +20,12 @@
   keymaps = [
     { key = "<leader>sh"; action = "<cmd>Telescope help_tags <CR>"; mode = "n"; options.desc = "[S]earch [H]elp"; }
     { key = "<leader>sk"; action = "<cmd>Telescope keymaps <CR>"; mode = "n"; options.desc = "[S]earch [K]eymaps"; }
-    { key = "<leader>sp"; action = "<cmd>Telescope find_files <CR>"; mode = "n"; options.desc = "[S]earch [P]rojects"; }
     {
       key = "<leader>sf";
       action.__raw = "function()
             local builtin = require(\"telescope.builtin\")
             local utils = require(\"telescope.utils\")
-            builtin.find_files({ cwd = utils.buffer_dir() }) 
+            builtin.git_files({ cwd = vim.fn.input(\"Folder to search in: \", utils.buffer_dir(), \"file\") })
           end
         ";
       mode = "n";
@@ -33,7 +38,7 @@
       action.__raw = "function()
             local builtin = require(\"telescope.builtin\")
             local utils = require(\"telescope.utils\")
-            builtin.live_grep({ cwd = utils.buffer_dir() }) 
+            builtin.live_grep({ cwd = vim.fn.input(\"Folder to search in: \", utils.buffer_dir(), \"file\") })
           end
         ";
       mode = "n";
