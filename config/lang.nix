@@ -38,8 +38,7 @@
       };
 
       # Python LSP
-      ruff.enable = true;
-      ruff-lsp.enable = true;
+      pyright.enable = true;
     };
   };
 
