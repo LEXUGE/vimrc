@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   extraConfigLuaPre = (builtins.readFile ./pre.lua);
-  extraPackages = [ pkgs.wl-clipboard ];
+
+  extraPackages = [ pkgs.xclip ];
 
   imports = [
     ./movements.nix
