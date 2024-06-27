@@ -26,30 +26,30 @@
     { key = "<leader>sk"; action = "<cmd>Telescope keymaps <CR>"; mode = "n"; options.desc = "[S]earch [K]eymaps"; }
     # git_files always launch from the .gitignore, so behaves pretty much like a "search project" functionality.
     { key = "<leader>sp"; action = "<cmd>Telescope git_files <CR>"; mode = "n"; options.desc = "[S]earch Git [P]roject"; }
-    # {
-    #   key = "<leader>sf";
-    #   action.__raw = "function()
-    #         local builtin = require(\"telescope.builtin\")
-    #         local utils = require(\"telescope.utils\")
-    #         builtin.find_files({ cwd = vim.fn.input(\"Folder to search in: \", utils.buffer_dir(), \"file\") })
-    #       end
-    #     ";
-    #   mode = "n";
-    #   options.desc = "[S]earch [F]iles";
-    # }
+    {
+      key = "<leader>sf";
+      action.__raw = "function()
+            local builtin = require(\"telescope.builtin\")
+            local utils = require(\"telescope.utils\")
+            builtin.find_files({ cwd = utils.buffer_dir() })
+          end
+        ";
+      mode = "n";
+      options.desc = "[S]earch [F]iles";
+    }
     { key = "<leader>ss"; action = "<cmd>Telescope builtin <CR>"; mode = "n"; options.desc = "[S]earch [S]elect Telescope"; }
     { key = "<leader>sw"; action = "<cmd>Telescope grep_string <CR>"; mode = "n"; options.desc = "[S]earch current [W]ord"; }
-    # {
-    #   key = "<leader>sg";
-    #   action.__raw = "function()
-    #         local builtin = require(\"telescope.builtin\")
-    #         local utils = require(\"telescope.utils\")
-    #         builtin.live_grep({ cwd = vim.fn.input(\"Folder to search in: \", utils.buffer_dir(), \"file\") })
-    #       end
-    #     ";
-    #   mode = "n";
-    #   options.desc = "[S]earch by [G]rep";
-    # }
+    {
+      key = "<leader>sg";
+      action.__raw = "function()
+            local builtin = require(\"telescope.builtin\")
+            local utils = require(\"telescope.utils\")
+            builtin.live_grep({ cwd = utils.buffer_dir() })
+          end
+        ";
+      mode = "n";
+      options.desc = "[S]earch by [G]rep";
+    }
     { key = "<leader>sd"; action = "<cmd>Telescope diagnostics <CR>"; mode = "n"; options.desc = "[S]earch [D]iagnostics"; }
     { key = "<leader>sr"; action = "<cmd>Telescope resume <CR>"; mode = "n"; options.desc = "[S]earch [R]esume"; }
     { key = "<leader>s."; action = "<cmd>Telescope oldfiles <CR>"; mode = "n"; options.desc = "[S]earch Recent Files (\".\" for repeat)"; }
