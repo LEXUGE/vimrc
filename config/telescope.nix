@@ -69,7 +69,7 @@
     { key = "<leader>sd"; action = "<cmd>Telescope diagnostics <CR>"; mode = "n"; options.desc = "[S]earch [D]iagnostics"; }
     { key = "<leader>sr"; action = "<cmd>Telescope resume <CR>"; mode = "n"; options.desc = "[S]earch [R]esume"; }
     { key = "<leader>s."; action = "<cmd>Telescope oldfiles <CR>"; mode = "n"; options.desc = "[S]earch Recent Files (\".\" for repeat)"; }
-    { key = "<leader>b"; action = "<cmd>Telescope buffers <CR>"; mode = "n"; options.desc = "Find existing [b]uffers"; }
+    { key = "<leader>b"; action.__raw = "function() require(\"telescope.builtin\").buffers({sort_lastused = true}) end"; mode = "n"; options.desc = "Find existing [b]uffers"; }
     {
       key = "<leader>/";
       action.__raw = "function()
@@ -83,7 +83,7 @@
       mode = "n";
       options.desc = "[/] Fuzzily search in current buffer";
     }
-    { key = "<leader><leader>"; action = "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>"; mode = "n"; options.desc = "[F]ile [B]rowser"; }
+    { key = "<leader><leader>"; action = "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>"; mode = "n"; options.desc = "File Browser"; }
     { key = "<leader>t"; action = "<cmd>Telescope telescope-tabs list_tabs<CR>"; mode = "n"; options.desc = "[T]abs"; }
   ];
 }
