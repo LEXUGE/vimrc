@@ -15,3 +15,7 @@
 - Scroll other windows without shifting focus:
 ## Command line
 - Just use the emacs keybindings. Though <kbd>M-b</kbd> doesn't work in command line mode.
+## Manage buffers
+- Use the telescope buffer manager (<kbd> b</kbd>). And use <kbd>d</kbd> or <kbd>C-d</kbd> in insert mode to delete the buffer.
+## Tab pages
+- Use the telescope tab manager (<kbd> t</kbd>). Default keybindings are given in [telescope-tabs](https://github.com/LukasPietzschmann/telescope-tabs).

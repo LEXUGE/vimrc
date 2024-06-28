@@ -80,6 +80,11 @@
   extraPlugins = [ pkgs.vimPlugins.vim-rsi ];
 
   keymaps = [
+    # Tab management
+    { mode = "n"; key = "<A-n>"; action = ":tabn<CR>"; }
+    { mode = "n"; key = "<A-p>"; action = ":tabp<CR>"; }
+    { mode = "n"; key = "g<Tab>"; action.__raw = "function() require('telescope-tabs').go_to_previous() end"; }
+
     # Use emacs like keymap in insert mode for navigation
     { mode = "i"; key = "<C-p>"; action = "<Up>"; }
     { mode = "i"; key = "<C-n>"; action = "<Down>"; }

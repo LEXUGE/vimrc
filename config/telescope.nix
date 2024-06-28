@@ -1,6 +1,22 @@
-{
+{ pkgs, lib, ... }: {
+  extraPlugins = [
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "telescope-tabs";
+      src = pkgs.fetchFromGitHub {
+        owner = "LukasPietzschmann";
+        repo = "telescope-tabs";
+        rev = "0a678eefcb71ebe5cb0876aa71dd2e2583d27fd3";
+        hash = "sha256-IvxZVHPtApnzUXIQzklT2C2kAxgtAkBUq3GNxwgPdPY=";
+      };
+    })
+  ];
+
   plugins.telescope = {
     enable = true;
+    keymaps = {
+      "d" = "delete_buffer";
+      "<C-d>" = { action = "delete_buffer"; mode = "i"; };
+    };
     extensions = {
       fzf-native.enable = true;
       ui-select.enable = true;
@@ -53,7 +69,7 @@
     { key = "<leader>sd"; action = "<cmd>Telescope diagnostics <CR>"; mode = "n"; options.desc = "[S]earch [D]iagnostics"; }
     { key = "<leader>sr"; action = "<cmd>Telescope resume <CR>"; mode = "n"; options.desc = "[S]earch [R]esume"; }
     { key = "<leader>s."; action = "<cmd>Telescope oldfiles <CR>"; mode = "n"; options.desc = "[S]earch Recent Files (\".\" for repeat)"; }
-    { key = "<leader><leader>"; action = "<cmd>Telescope buffers <CR>"; mode = "n"; options.desc = "[ ] Find existing buffers"; }
+    { key = "<leader>b"; action = "<cmd>Telescope buffers <CR>"; mode = "n"; options.desc = "Find existing [b]uffers"; }
     {
       key = "<leader>/";
       action.__raw = "function()
@@ -67,6 +83,7 @@
       mode = "n";
       options.desc = "[/] Fuzzily search in current buffer";
     }
-    { key = "<leader>fb"; action = "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>"; mode = "n"; options.desc = "[F]ile [B]rowser"; }
+    { key = "<leader><leader>"; action = "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>"; mode = "n"; options.desc = "[F]ile [B]rowser"; }
+    { key = "<leader>t"; action = "<cmd>Telescope telescope-tabs list_tabs<CR>"; mode = "n"; options.desc = "[T]abs"; }
   ];
 }
