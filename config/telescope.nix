@@ -85,5 +85,6 @@
     }
     { key = "<leader><leader>"; action = "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>"; mode = "n"; options.desc = "File Browser"; }
     { key = "<leader>t"; action = "<cmd>Telescope telescope-tabs list_tabs<CR>"; mode = "n"; options.desc = "[T]abs"; }
+    { key = "<leader>y"; action = "<cmd>Telescope yank_history<CR>"; mode = "n"; options.desc = "[Y]anky Ring"; }
   ];
 }

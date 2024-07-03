@@ -71,9 +71,9 @@
   # yank ring/kill ring
   plugins.yanky = {
     enable = true;
-    picker.telescope.enable = true;
+    enableTelescope = true;
     # We could move the cursor around and still be able to cycle through the ring
-    ring.cancelEvent = "update";
+    settings.ring.cancel_event = "update";
   };
 
   # Use emacs style binding in insert and command line mode

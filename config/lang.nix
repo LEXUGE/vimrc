@@ -110,6 +110,44 @@
     incrementalSelection.enable = true;
   };
 
+  # Display the context (i.e. the function signature when in the body of a function)
+  plugins.treesitter-context = {
+    enable = true;
+  };
+
+  plugins.treesitter-textobjects = {
+    enable = true;
+    select = {
+      enable = true;
+      lookahead = true;
+      keymaps = {
+        "af".query = "@function.outer";
+        "if".query = "@function.inner";
+        "ab".query = "@block.outer";
+        "ib".query = "@block.inner";
+        "ip".query = "@parameter.inner";
+        "la".query = "@assignment.lhs";
+        "ra".query = "@assignment.rhs";
+      };
+    };
+
+    move = {
+      enable = true;
+      setJumps = true;
+      gotoNextStart = {
+        "]f".query = "@function.outer";
+        "]b".query = "@block.inner";
+        "]p".query = "@parameter.inner";
+      };
+
+      gotoPreviousStart = {
+        "[f".query = "@function.outer";
+        "[b".query = "@block.inner";
+        "[p".query = "@parameter.inner";
+      };
+    };
+  };
+
   # Formatting
   plugins.conform-nvim = {
     enable = true;
@@ -139,5 +177,7 @@
     { mode = "n"; key = "]d"; action.__raw = "vim.diagnostic.goto_next"; options.desc = "Go to next [D]iagnostic message"; }
     { mode = "n"; key = "<leader>e"; action.__raw = "vim.diagnostic.open_float"; options.desc = "Show diagnostic [E]rror messages"; }
     { mode = "n"; key = "<leader>q"; action.__raw = "vim.diagnostic.setloclist"; options.desc = "Open diagnostic [Q]uickfix list"; }
+    { mode = [ "n" "x" "o" ]; key = ";"; action.__raw = "require('nvim-treesitter.textobjects.repeatable_move').repeat_last_move"; }
+    { mode = [ "n" "x" "o" ]; key = ","; action.__raw = "require('nvim-treesitter.textobjects.repeatable_move').repeat_last_move_opposite"; }
   ];
 }
