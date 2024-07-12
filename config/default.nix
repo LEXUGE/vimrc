@@ -38,4 +38,6 @@
   plugins.which-key = {
     enable = true;
   };
+
+  plugins.auto-session.enable = true;
 }
