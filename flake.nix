@@ -23,8 +23,17 @@
       });
 
       perSystem =
-        { pkgs, system, ... }:
+        { system, ... }:
         let
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [
+              (final: prev: {
+                vimPlugins = prev.vimPlugins.extend
+                  (prev.callPackage ./vim_plugin_overrides.nix { buildVimPlugin = prev.vimUtils.buildVimPlugin; });
+              })
+            ];
+          };
           nixvimLib = nixvim.lib.${system};
           nixvim' = nixvim.legacyPackages.${system};
           nixvimModule = {
