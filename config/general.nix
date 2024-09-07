@@ -76,6 +76,9 @@
     settings.ring.cancel_event = "update";
   };
 
+  # add / delete / change surrounds
+  plugins.surround.enable = true;
+
   # Use emacs style binding in insert and command line mode
   extraPlugins = [ pkgs.vimPlugins.vim-rsi ];
 

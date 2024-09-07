@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  extraPlugins = [ pkgs.vimPlugins.julia-vim ];
   extraPackages = with pkgs; [ stylua black nixpkgs-fmt ];
   plugins.lsp = {
     enable = true;
