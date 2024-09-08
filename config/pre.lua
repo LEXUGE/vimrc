@@ -23,6 +23,29 @@ local fb_open_using = function(finder)
 	end
 end
 
+local zotero_cite = function()
+	-- Pick a format based on the filetype
+	local filetype = vim.bo.filetype
+	local format
+	if filetype == "typst" then
+		format = "typst"
+	elseif filetype:match(".*tex") then
+		format = "latex"
+	else
+		format = "mmd" -- MultiMarkdown
+	end
+
+	local api_call = "http://127.0.0.1:23119/better-bibtex/cayw?format=" .. format
+
+	-- Use vim.fn.system instead of system()
+	local ref = vim.fn.system("curl -s " .. vim.fn.shellescape(api_call))
+
+	-- Remove any trailing newlines
+	ref = ref:gsub("\n$", "")
+
+	return ref
+end
+
 -- Display the entry as full paths to the files relative to the current working directory.
 require("telescope-tabs").setup({
 	entry_formatter = function(tab_id, buffer_ids, file_names, file_paths, is_current)
