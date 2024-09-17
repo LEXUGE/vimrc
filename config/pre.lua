@@ -58,3 +58,7 @@ require("telescope-tabs").setup({
 		return string.format("%d: %s%s", tab_id, entry_string, is_current and " <" or "")
 	end,
 })
+
+require("nvim-surround").setup({
+	-- Configuration here, or leave empty to use defaults
+})

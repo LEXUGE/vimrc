@@ -107,8 +107,8 @@
   plugins.treesitter = {
     # By default this uses nixGrammar and installs all grammars available.
     enable = true;
-    indent = true;
-    incrementalSelection.enable = true;
+    settings.indent.enable = true;
+    settings.incremental_selection.enable = true;
   };
 
   # Display the context (i.e. the function signature when in the body of a function)
@@ -152,12 +152,12 @@
   # Formatting
   plugins.conform-nvim = {
     enable = true;
-    formatOnSave = {
+    settings.format_on_save = {
       lspFallback = true;
       timeoutMs = 500;
     };
 
-    formattersByFt = {
+    settings.formatters_by_ft = {
       nix = [ "nixpkgs_fmt" ];
       lua = [ "stylua" ];
 

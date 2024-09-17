@@ -13,7 +13,7 @@
   colorschemes.gruvbox.enable = true;
   plugins.lightline = {
     enable = true;
-    colorscheme = "powerline";
+    settings.colorscheme = "powerline";
   };
 
   plugins.sleuth.enable = true;

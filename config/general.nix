@@ -76,11 +76,12 @@
     settings.ring.cancel_event = "update";
   };
 
-  # add / delete / change surrounds
-  plugins.surround.enable = true;
-
-  # Use emacs style binding in insert and command line mode
-  extraPlugins = [ pkgs.vimPlugins.vim-rsi ];
+  extraPlugins = [
+    # Use emacs style binding in insert and command line mode
+    pkgs.vimPlugins.vim-rsi
+    # Add/remove brackets
+    pkgs.vimPlugins.nvim-surround
+  ];
 
   keymaps = [
     # Tab management
