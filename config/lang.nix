@@ -109,6 +109,7 @@
     enable = true;
     settings.indent.enable = true;
     settings.incremental_selection.enable = true;
+    settings.highlight.enable = true;
   };
 
   # Display the context (i.e. the function signature when in the body of a function)
