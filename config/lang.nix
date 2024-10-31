@@ -29,10 +29,10 @@
   plugins.lsp = {
     servers = {
       # Nix LSP
-      nil-ls.enable = true;
+      nil_ls.enable = true;
 
       # Rust LSP
-      rust-analyzer = {
+      rust_analyzer = {
         enable = true;
         installCargo = false;
         installRustc = false;
@@ -46,7 +46,7 @@
 
   plugins.nvim-ufo = {
     enable = true;
-    providerSelector = "function(bufnr, filetype, buftype)
+    settings.provider_selector = "function(bufnr, filetype, buftype)
         return {'treesitter', 'indent'}
     end";
   };

@@ -54,10 +54,10 @@
 
     # Minimal number of screen lines to keep above and below the cursor.
     scrolloff = 10;
-  };
 
-  # Disable the highlight after pressing <Esc> in Normal mode.
-  opts.hlsearch = true;
+    # Disable the highlight after pressing <Esc> in Normal mode.
+    hlsearch = true;
+  };
 
   # Highlight when we copy the text.
   autoCmd = [{
@@ -75,6 +75,28 @@
     # We could move the cursor around and still be able to cycle through the ring
     settings.ring.cancel_event = "update";
   };
+
+  colorschemes.gruvbox.enable = true;
+  plugins.lightline = {
+    enable = true;
+    settings.colorscheme = "powerline";
+  };
+
+  plugins.sleuth.enable = true;
+
+  plugins.which-key = {
+    enable = true;
+  };
+
+  plugins.auto-session = {
+    enable = true;
+    settings.allowed_dirs = [ "~/Documents/" ];
+  };
+
+  # Comment an area of code fast.
+  plugins.comment.enable = true;
+  # Highlight TODO and FIXME and NOTE in comments.
+  plugins.todo-comments.enable = true;
 
   extraPlugins = [
     # Use emacs style binding in insert and command line mode
