@@ -16,8 +16,7 @@
   plugins.telescope = {
     enable = true;
     settings.defaults.mappings = {
-      n."d".__raw = "require('telescope.actions').delete_buffer";
-      i."<C-d>".__raw = "require('telescope.actions').delete_buffer";
+      n."db".__raw = "require('telescope.actions').delete_buffer";
     };
     extensions = {
       fzf-native.enable = true;
