@@ -108,7 +108,16 @@
     # By default this uses nixGrammar and installs all grammars available.
     enable = true;
     settings.indent.enable = true;
-    settings.incremental_selection.enable = true;
+    settings.incremental_selection = {
+      enable = true;
+      keymaps = {
+        # tree sitter start
+        init_selection = "<Leader>tss";
+        node_incremental = "<Leader>tsi";
+        node_decremental = "<Leader>tsd";
+        scope_incremental = "<Leader>tsc";
+      };
+    };
     settings.highlight.enable = true;
   };
 

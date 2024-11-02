@@ -54,7 +54,7 @@
       mode = "n";
       options.desc = "[S]earch [F]iles";
     }
-    { key = "<leader>ss"; action = "<cmd>Telescope builtin <CR>"; mode = "n"; options.desc = "[S]earch [S]elect Telescope"; }
+    { key = "<leader>sb"; action = "<cmd>Telescope builtin <CR>"; mode = "n"; options.desc = "[S]earch [B]uiltin"; }
     { key = "<leader>se"; action = "<cmd>Telescope session-lens <CR>"; mode = "n"; options.desc = "[S]ession"; }
     { key = "<leader>sw"; action = "<cmd>Telescope grep_string <CR>"; mode = "n"; options.desc = "[S]earch current [W]ord"; }
     {

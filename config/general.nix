@@ -57,6 +57,13 @@
 
     # Disable the highlight after pressing <Esc> in Normal mode.
     hlsearch = true;
+
+    # allow cursor to move anywhere in the visual block mode. This is good for "end of the line" edit.
+    virtualedit = "block";
+
+    # Spell check
+    spelllang = "en_us";
+    spell = true;
   };
 
   # Highlight when we copy the text.
@@ -88,9 +95,19 @@
     enable = true;
   };
 
+  # Don't include fold as it breaks the auto-session occasionally.
+  # https://github.com/rmagatti/auto-session/issues/109
+  opts.sessionoptions = "blank,buffers,curdir,help,tabpages,winsize,winpos,terminal,localoptions";
   plugins.auto-session = {
     enable = true;
-    settings.allowed_dirs = [ "~/Documents/" ];
+    settings.auto_create = {
+      __raw = ''
+        function()
+          local cmd = 'git rev-parse --is-inside-work-tree'
+          return vim.fn.system(cmd) == 'true\n'
+        end,
+      '';
+    };
   };
 
   # Comment an area of code fast.

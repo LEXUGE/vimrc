@@ -1,6 +1,9 @@
+-- NOTE: These must be setup before subsequent plugins and key bindings use the "<Leader>" and "<LocalLeader>" notation.
+-- Otherwise they are gonna be replaced by backslash.
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- These are needed because later keybinding would use them.
 local tl_actions = require("telescope.actions")
 local tl_action_state = require("telescope.actions.state")
 local fb_utils = require("telescope._extensions.file_browser.utils")
