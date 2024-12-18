@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
       name = "telescope-tabs";
@@ -39,10 +40,25 @@
   # - Insert mode: <c-/>
   # - Normal mode: ?
   keymaps = [
-    { key = "<leader>sh"; action = "<cmd>Telescope help_tags <CR>"; mode = "n"; options.desc = "[S]earch [H]elp"; }
-    { key = "<leader>sk"; action = "<cmd>Telescope keymaps <CR>"; mode = "n"; options.desc = "[S]earch [K]eymaps"; }
+    {
+      key = "<leader>sh";
+      action = "<cmd>Telescope help_tags <CR>";
+      mode = "n";
+      options.desc = "[S]earch [H]elp";
+    }
+    {
+      key = "<leader>sk";
+      action = "<cmd>Telescope keymaps <CR>";
+      mode = "n";
+      options.desc = "[S]earch [K]eymaps";
+    }
     # git_files always launch from the .gitignore, so behaves pretty much like a "search project" functionality.
-    { key = "<leader>sp"; action = "<cmd>Telescope git_files <CR>"; mode = "n"; options.desc = "[S]earch Git [P]roject"; }
+    {
+      key = "<leader>sp";
+      action = "<cmd>Telescope git_files <CR>";
+      mode = "n";
+      options.desc = "[S]earch Git [P]roject";
+    }
     {
       key = "<leader>sf";
       action.__raw = "function()
@@ -54,9 +70,24 @@
       mode = "n";
       options.desc = "[S]earch [F]iles";
     }
-    { key = "<leader>sb"; action = "<cmd>Telescope builtin <CR>"; mode = "n"; options.desc = "[S]earch [B]uiltin"; }
-    { key = "<leader>se"; action = "<cmd>Telescope session-lens <CR>"; mode = "n"; options.desc = "[S]ession"; }
-    { key = "<leader>sw"; action = "<cmd>Telescope grep_string <CR>"; mode = "n"; options.desc = "[S]earch current [W]ord"; }
+    {
+      key = "<leader>sb";
+      action = "<cmd>Telescope builtin <CR>";
+      mode = "n";
+      options.desc = "[S]earch [B]uiltin";
+    }
+    {
+      key = "<leader>se";
+      action = "<cmd>Telescope session-lens <CR>";
+      mode = "n";
+      options.desc = "[S]ession";
+    }
+    {
+      key = "<leader>sw";
+      action = "<cmd>Telescope grep_string <CR>";
+      mode = "n";
+      options.desc = "[S]earch current [W]ord";
+    }
     {
       key = "<leader>sg";
       action.__raw = "function()
@@ -68,10 +99,30 @@
       mode = "n";
       options.desc = "[S]earch by [G]rep";
     }
-    { key = "<leader>sd"; action = "<cmd>Telescope diagnostics <CR>"; mode = "n"; options.desc = "[S]earch [D]iagnostics"; }
-    { key = "<leader>sr"; action = "<cmd>Telescope resume <CR>"; mode = "n"; options.desc = "[S]earch [R]esume"; }
-    { key = "<leader>s."; action = "<cmd>Telescope oldfiles <CR>"; mode = "n"; options.desc = "[S]earch Recent Files (\".\" for repeat)"; }
-    { key = "<leader>b"; action.__raw = "function() require(\"telescope.builtin\").buffers({sort_lastused = true}) end"; mode = "n"; options.desc = "Find existing [b]uffers"; }
+    {
+      key = "<leader>sd";
+      action = "<cmd>Telescope diagnostics <CR>";
+      mode = "n";
+      options.desc = "[S]earch [D]iagnostics";
+    }
+    {
+      key = "<leader>sr";
+      action = "<cmd>Telescope resume <CR>";
+      mode = "n";
+      options.desc = "[S]earch [R]esume";
+    }
+    {
+      key = "<leader>s.";
+      action = "<cmd>Telescope oldfiles <CR>";
+      mode = "n";
+      options.desc = "[S]earch Recent Files (\".\" for repeat)";
+    }
+    {
+      key = "<leader>b";
+      action.__raw = "function() require(\"telescope.builtin\").buffers({sort_lastused = true}) end";
+      mode = "n";
+      options.desc = "Find existing [b]uffers";
+    }
     {
       key = "<leader>/";
       action.__raw = "function()
@@ -85,8 +136,23 @@
       mode = "n";
       options.desc = "[/] Fuzzily search in current buffer";
     }
-    { key = "<leader><leader>"; action = "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>"; mode = "n"; options.desc = "File Browser"; }
-    { key = "<leader>t"; action = "<cmd>Telescope telescope-tabs list_tabs<CR>"; mode = "n"; options.desc = "[T]abs"; }
-    { key = "<leader>y"; action = "<cmd>Telescope yank_history<CR>"; mode = "n"; options.desc = "[Y]anky Ring"; }
+    {
+      key = "<leader><leader>";
+      action = "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>";
+      mode = "n";
+      options.desc = "File Browser";
+    }
+    {
+      key = "<leader>t";
+      action = "<cmd>Telescope telescope-tabs list_tabs<CR>";
+      mode = "n";
+      options.desc = "[T]abs";
+    }
+    {
+      key = "<leader>y";
+      action = "<cmd>Telescope yank_history<CR>";
+      mode = "n";
+      options.desc = "[Y]anky Ring";
+    }
   ];
 }

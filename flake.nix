@@ -3,13 +3,22 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixvim = { url = "github:nix-community/nixvim"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-parts.url = "github:hercules-ci/flake-parts";
     git-hooks.url = "github:cachix/git-hooks.nix";
   };
 
   outputs =
-    { self, nixvim, flake-parts, git-hooks, ... }@inputs:
+    {
+      self,
+      nixvim,
+      flake-parts,
+      git-hooks,
+      ...
+    }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
@@ -18,9 +27,11 @@
         "aarch64-darwin"
       ];
 
-      flake.overlays.default = (final: prev: {
-        nvim = self.packages.${prev.system}.nvim;
-      });
+      flake.overlays.default = (
+        final: prev: {
+          nvim = self.packages.${prev.system}.nvim;
+        }
+      );
 
       perSystem =
         { system, ... }:
@@ -29,8 +40,9 @@
             inherit system;
             overlays = [
               (final: prev: {
-                vimPlugins = prev.vimPlugins.extend
-                  (prev.callPackage ./vim_plugin_overrides.nix { buildVimPlugin = prev.vimUtils.buildVimPlugin; });
+                vimPlugins = prev.vimPlugins.extend (
+                  prev.callPackage ./vim_plugin_overrides.nix { buildVimPlugin = prev.vimUtils.buildVimPlugin; }
+                );
               })
             ];
           };
@@ -53,7 +65,7 @@
             pre-commit-check = git-hooks.lib.${system}.run {
               src = ./.;
               hooks = {
-                nixpkgs-fmt.enable = true;
+                nixfmt-rfc-style.enable = true;
                 stylua.enable = true;
               };
             };

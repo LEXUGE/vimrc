@@ -4,13 +4,19 @@
     {
       action = "<End>";
       key = "<C-e>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
     }
 
     {
       action = "0";
       key = "<C-a>";
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
     }
 
     # Simplify the window movement.

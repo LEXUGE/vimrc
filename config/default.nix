@@ -1,8 +1,13 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   extraConfigLuaPre = (builtins.readFile ./pre.lua);
   extraConfigLua = (builtins.readFile ./extra.lua);
 
-  extraPackages = [ pkgs.xclip pkgs.inkscape pkgs.git ];
+  extraPackages = [
+    pkgs.xclip
+    pkgs.inkscape
+    pkgs.git
+  ];
 
   imports = [
     # Configuration related to movements

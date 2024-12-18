@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   opts = {
     # Make line numbers default
     number = true;
@@ -44,7 +45,11 @@
     #   See `:help 'list'`
     #   and `:help 'listchars'`
     list = true;
-    listchars = { tab = "» "; trail = "·"; nbsp = "␣"; };
+    listchars = {
+      tab = "» ";
+      trail = "·";
+      nbsp = "␣";
+    };
 
     # Preview substitutions live, as you type!
     inccommand = "split";
@@ -67,12 +72,14 @@
   };
 
   # Highlight when we copy the text.
-  autoCmd = [{
-    event = "TextYankPost";
-    desc = "Highlight when copying text";
-    group = "highlight-yank";
-    callback."__raw" = "function() vim.highlight.on_yank() end";
-  }];
+  autoCmd = [
+    {
+      event = "TextYankPost";
+      desc = "Highlight when copying text";
+      group = "highlight-yank";
+      callback."__raw" = "function() vim.highlight.on_yank() end";
+    }
+  ];
   autoGroups.highlight-yank.clear = true;
 
   # yank ring/kill ring
@@ -124,16 +131,40 @@
 
   keymaps = [
     # Tab management
-    { mode = "n"; key = "<A-l>"; action = ":tabn<CR>"; }
-    { mode = "n"; key = "<A-h>"; action = ":tabp<CR>"; }
-    { mode = "n"; key = "g<Tab>"; action.__raw = "function() require('telescope-tabs').go_to_previous() end"; }
+    {
+      mode = "n";
+      key = "<A-l>";
+      action = ":tabn<CR>";
+    }
+    {
+      mode = "n";
+      key = "<A-h>";
+      action = ":tabp<CR>";
+    }
+    {
+      mode = "n";
+      key = "g<Tab>";
+      action.__raw = "function() require('telescope-tabs').go_to_previous() end";
+    }
 
     # Use emacs like keymap in insert mode for navigation
-    { mode = "i"; key = "<C-p>"; action = "<Up>"; }
-    { mode = "i"; key = "<C-n>"; action = "<Down>"; }
+    {
+      mode = "i";
+      key = "<C-p>";
+      action = "<Up>";
+    }
+    {
+      mode = "i";
+      key = "<C-n>";
+      action = "<Down>";
+    }
 
     # Disable search highlight after the Esc.
-    { action = "<cmd>nohlsearch<CR>"; key = "<Esc>"; mode = "n"; }
+    {
+      action = "<cmd>nohlsearch<CR>";
+      key = "<Esc>";
+      mode = "n";
+    }
 
     # Yanky ring
     {
@@ -147,12 +178,18 @@
       action = "<Plug>(YankyNextEntry)";
     }
     {
-      mode = [ "n" "x" ];
+      mode = [
+        "n"
+        "x"
+      ];
       key = "p";
       action = "<Plug>(YankyPutAfter)";
     }
     {
-      mode = [ "n" "x" ];
+      mode = [
+        "n"
+        "x"
+      ];
       key = "P";
       action = "<Plug>(YankyPutBefore)";
     }

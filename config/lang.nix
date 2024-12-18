@@ -1,6 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   extraPlugins = [ pkgs.vimPlugins.julia-vim ];
-  extraPackages = with pkgs; [ stylua black nixpkgs-fmt ];
+  extraPackages = with pkgs; [
+    stylua
+    black
+    nixfmt-rfc-style
+  ];
   plugins.lsp = {
     enable = true;
     inlayHints = true;
@@ -12,11 +17,26 @@
       };
       # Integerate with telescoep.
       extra = [
-        { key = "gd"; action.__raw = "require('telescope.builtin').lsp_definitions"; }
-        { key = "gI"; action.__raw = "require('telescope.builtin').lsp_implementations"; }
-        { key = "gr"; action.__raw = "require('telescope.builtin').lsp_references"; }
-        { key = "<leader>ds"; action.__raw = "require('telescope.builtin').lsp_document_symbols"; }
-        { key = "<leader>ws"; action.__raw = "require('telescope.builtin').lsp_dynamic_workspace_symbols"; }
+        {
+          key = "gd";
+          action.__raw = "require('telescope.builtin').lsp_definitions";
+        }
+        {
+          key = "gI";
+          action.__raw = "require('telescope.builtin').lsp_implementations";
+        }
+        {
+          key = "gr";
+          action.__raw = "require('telescope.builtin').lsp_references";
+        }
+        {
+          key = "<leader>ds";
+          action.__raw = "require('telescope.builtin').lsp_document_symbols";
+        }
+        {
+          key = "<leader>ws";
+          action.__raw = "require('telescope.builtin').lsp_dynamic_workspace_symbols";
+        }
       ];
     };
     # Declare extra capabilities, copied from kickstart.nvim
@@ -42,7 +62,6 @@
       pyright.enable = true;
     };
   };
-
 
   plugins.nvim-ufo = {
     enable = true;
@@ -168,7 +187,7 @@
     };
 
     settings.formatters_by_ft = {
-      nix = [ "nixpkgs_fmt" ];
+      nix = [ "nixfmt" ];
       lua = [ "stylua" ];
 
       # Conform will run multiple formatters sequentially
@@ -181,16 +200,60 @@
   };
 
   keymaps = [
-    { mode = "n"; key = "zR"; action.__raw = "require('ufo').openAllFolds"; }
-    { mode = "n"; key = "zM"; action.__raw = "require('ufo').closeAllFolds"; }
+    {
+      mode = "n";
+      key = "zR";
+      action.__raw = "require('ufo').openAllFolds";
+    }
+    {
+      mode = "n";
+      key = "zM";
+      action.__raw = "require('ufo').closeAllFolds";
+    }
     # Jump between LSP diagnostics.
-    { mode = "n"; key = "[d"; action.__raw = "vim.diagnostic.goto_prev"; options.desc = "Go to previous [D]iagnostic message"; }
-    { mode = "n"; key = "]d"; action.__raw = "vim.diagnostic.goto_next"; options.desc = "Go to next [D]iagnostic message"; }
-    { mode = "n"; key = "<leader>e"; action.__raw = "vim.diagnostic.open_float"; options.desc = "Show diagnostic [E]rror messages"; }
-    { mode = "n"; key = "<leader>q"; action.__raw = "vim.diagnostic.setloclist"; options.desc = "Open diagnostic [Q]uickfix list"; }
+    {
+      mode = "n";
+      key = "[d";
+      action.__raw = "vim.diagnostic.goto_prev";
+      options.desc = "Go to previous [D]iagnostic message";
+    }
+    {
+      mode = "n";
+      key = "]d";
+      action.__raw = "vim.diagnostic.goto_next";
+      options.desc = "Go to next [D]iagnostic message";
+    }
+    {
+      mode = "n";
+      key = "<leader>e";
+      action.__raw = "vim.diagnostic.open_float";
+      options.desc = "Show diagnostic [E]rror messages";
+    }
+    {
+      mode = "n";
+      key = "<leader>q";
+      action.__raw = "vim.diagnostic.setloclist";
+      options.desc = "Open diagnostic [Q]uickfix list";
+    }
     # Treesitter jumps
-    { mode = [ "n" "x" "o" ]; key = ";"; action.__raw = "require('nvim-treesitter.textobjects.repeatable_move').repeat_last_move"; }
-    { mode = [ "n" "x" "o" ]; key = ","; action.__raw = "require('nvim-treesitter.textobjects.repeatable_move').repeat_last_move_opposite"; }
+    {
+      mode = [
+        "n"
+        "x"
+        "o"
+      ];
+      key = ";";
+      action.__raw = "require('nvim-treesitter.textobjects.repeatable_move').repeat_last_move";
+    }
+    {
+      mode = [
+        "n"
+        "x"
+        "o"
+      ];
+      key = ",";
+      action.__raw = "require('nvim-treesitter.textobjects.repeatable_move').repeat_last_move_opposite";
+    }
     # Zotero citing
     {
       mode = "n";

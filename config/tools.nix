@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   plugins.gitsigns = {
     enable = true;
     settings = {
@@ -30,9 +31,29 @@
   ];
 
   keymaps = [
-    { key = "<leader>is"; action.__raw = "function() require(\"illustrate\").create_and_open_svg() end"; mode = "n"; options.desc = "Create and open a new [S]VG file with provided name."; }
-    { key = "<leader>io"; action.__raw = "function() require(\"illustrate\").open_under_cursor() end"; mode = "n"; options.desc = "[O]pen file under cursor (or file within environment under cursor)."; }
-    { key = "<leader>if"; action.__raw = "function() require(\"illustrate.finder\").search_and_open() end"; mode = "n"; options.desc = "Use telescope to [F]ind and open illustrations in default app."; }
-    { key = "<leader>ic"; action.__raw = "function() require(\"illustrate.finder\").search_create_copy_and_open() end"; mode = "n"; options.desc = "Use telescope to search existing file, [C]opy it with new name, and open it in default app."; }
+    {
+      key = "<leader>is";
+      action.__raw = "function() require(\"illustrate\").create_and_open_svg() end";
+      mode = "n";
+      options.desc = "Create and open a new [S]VG file with provided name.";
+    }
+    {
+      key = "<leader>io";
+      action.__raw = "function() require(\"illustrate\").open_under_cursor() end";
+      mode = "n";
+      options.desc = "[O]pen file under cursor (or file within environment under cursor).";
+    }
+    {
+      key = "<leader>if";
+      action.__raw = "function() require(\"illustrate.finder\").search_and_open() end";
+      mode = "n";
+      options.desc = "Use telescope to [F]ind and open illustrations in default app.";
+    }
+    {
+      key = "<leader>ic";
+      action.__raw = "function() require(\"illustrate.finder\").search_create_copy_and_open() end";
+      mode = "n";
+      options.desc = "Use telescope to search existing file, [C]opy it with new name, and open it in default app.";
+    }
   ];
 }
