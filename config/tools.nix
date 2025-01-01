@@ -27,6 +27,10 @@
         rev = "65c27c1cfcb9da31fafa29199aa24b4381439279";
         hash = "sha256-L8KIwkaIxSnLn7QWh/mQ8Zb0BFHis6T/or2PBoLCdV0=";
       };
+      buildInputs = with pkgs.vimPlugins; [
+        nvim-notify
+        telescope-nvim
+      ];
     })
   ];
 

@@ -9,6 +9,7 @@
         rev = "0a678eefcb71ebe5cb0876aa71dd2e2583d27fd3";
         hash = "sha256-IvxZVHPtApnzUXIQzklT2C2kAxgtAkBUq3GNxwgPdPY=";
       };
+      buildInputs = with pkgs.vimPlugins; [ telescope-nvim ];
     })
   ];
 
