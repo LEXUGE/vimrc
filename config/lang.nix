@@ -5,6 +5,7 @@
     stylua
     black
     nixfmt-rfc-style
+    taplo
   ];
   plugins.lsp = {
     enable = true;
@@ -189,9 +190,11 @@
     settings.formatters_by_ft = {
       nix = [ "nixfmt" ];
       lua = [ "stylua" ];
+      rust = [ "rustfmt" ];
 
       # Conform will run multiple formatters sequentially
       python = [ "black" ];
+      toml = [ "taplo" ];
 
       # Use the "_" filetype to run formatters on filetypes that don't
       # have other formatters configured.
