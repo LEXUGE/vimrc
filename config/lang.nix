@@ -7,6 +7,20 @@
     nixfmt-rfc-style
     taplo
   ];
+
+  # Markdown Preview support
+  plugins.markdown-preview = {
+    enable = true;
+    settings = {
+      auto_start = 1;
+      auto_close = 0;
+      browser = "firefox-mem-uncapped";
+      browserfunc = "OpenMarkdownPreview";
+      combine_preview = 1;
+      combine_preview_auto_refresh = 1;
+    };
+  };
+
   plugins.lsp = {
     enable = true;
     inlayHints = true;
@@ -15,6 +29,7 @@
       lspBuf = {
         "K" = "hover";
         "<leader>rn" = "rename";
+        "<leader>ca" = "code_action";
       };
       # Integerate with telescoep.
       extra = [

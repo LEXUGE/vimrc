@@ -48,3 +48,10 @@ local zotero_cite = function()
 
 	return ref
 end
+
+vim.cmd([[
+         function OpenMarkdownPreview (url)
+            let cmd = "firefox-mem-uncapped --new-window " . shellescape(a:url) . " &"
+            silent call system(cmd)
+         endfunction
+      ]])
