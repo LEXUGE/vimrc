@@ -51,7 +51,7 @@ end
 
 vim.cmd([[
          function OpenMarkdownPreview (url)
-            let cmd = "firefox-mem-uncapped --new-window " . shellescape(a:url) . " &"
+            let cmd = "firefox --new-window " . shellescape(a:url) . " &"
             silent call system(cmd)
          endfunction
       ]])
