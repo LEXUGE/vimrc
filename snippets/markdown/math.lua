@@ -212,9 +212,25 @@ return {
 		{ condition = in_mathzone }
 	),
 
+	s(
+		{ name = "Exponential", trig = "exp", wordTrig = false, snippetType = "autosnippet" },
+		fmta("\\exp{<>}", {
+			d(1, get_visual),
+		}),
+		{ condition = in_mathzone }
+	),
+
 	s({ name = "hbar", trig = "hb", snippetType = "autosnippet" }, t("\\hbar"), { condition = in_mathzone }),
 
 	s({ name = "Infinity", trig = "inf", snippetType = "autosnippet" }, { t("\\infty") }, { condition = in_mathzone }),
+
+	s({ name = "Subset", trig = "sub", snippetType = "autosnippet" }, { t("\\subset") }, { condition = in_mathzone }),
+
+	s(
+		{ name = "Subset Eq", trig = "esub", snippetType = "autosnippet" },
+		{ t("\\subseteq") },
+		{ condition = in_mathzone }
+	),
 
 	s(
 		{ name = "Limit", trig = "lim", snippetType = "autosnippet" },
@@ -230,7 +246,7 @@ return {
 
 	s({ name = "to", trig = "->", snippetType = "autosnippet" }, { t("\\to") }, { condition = in_mathzone }),
 
-	s({ name = "maps to", trig = "|->", snippetType = "autosnippet" }, { t("\\mapsto") }, { condition = in_mathzone }),
+	s({ name = "maps to", trig = "m->", snippetType = "autosnippet" }, { t("\\mapsto") }, { condition = in_mathzone }),
 
 	s(
 		{ name = "Annotated Implies", trig = "aimp", snippetType = "autosnippet" },
