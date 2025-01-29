@@ -2,6 +2,9 @@
 -- Otherwise they are gonna be replaced by backslash.
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+-- This is required to fix luasnip problem
+-- https://www.reddit.com/r/neovim/comments/1du6xop/luasnip_autosnippets_not_working/
+vim.g.tex_flavor = "latex"
 
 -- These are needed because later keybinding would use them.
 local tl_actions = require("telescope.actions")

@@ -27,3 +27,16 @@ require("illustrate").setup({
 		},
 	},
 })
+
+-- It's required for us to write in vim script I am afraid
+vim.cmd([[
+" Expand or jump in insert mode
+imap <silent><expr> jk luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : 'jk'
+
+" Jump forward through tabstops in visual mode
+smap <silent><expr> <Tab> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<Tab>'
+
+" Jump backward through snippet tabstops with Shift-Tab (for example)
+imap <silent><expr> jh luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : 'jh'
+smap <silent><expr> jh luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : 'jh'
+]])

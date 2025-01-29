@@ -8,6 +8,22 @@
     taplo
   ];
 
+  extraFiles = {
+    "lua/detect-mathzone.lua".source = ../lua/detect-mathzone.lua;
+  };
+
+  plugins.luasnip = {
+    enable = true;
+    settings = {
+      enable_autosnippets = true;
+      # Tap <Tab> to cut the selected texts in visual mode and store it in some variable for use later.
+      cut_selection_keys = "<Tab>";
+    };
+    fromLua = [
+      { paths = ../snippets; }
+    ];
+  };
+
   # Markdown Preview support
   plugins.markdown-preview = {
     enable = true;
