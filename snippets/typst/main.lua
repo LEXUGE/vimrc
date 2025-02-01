@@ -32,6 +32,13 @@ return {
 	),
 
 	s(
+		{ name = "Import Preamble", trig = "_pre", snippetType = "autosnippet" },
+		t({
+			'#import "/preamble.typ": *',
+		})
+	),
+
+	s(
 		{ name = "Useful packages", trig = "_pkg", snippetType = "autosnippet" },
 		t({
 			'#import "@preview/physica:0.9.4": *',

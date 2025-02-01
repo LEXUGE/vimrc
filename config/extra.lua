@@ -35,7 +35,8 @@ require("typst-preview").setup({
 
 	-- Custom format string to open the output link provided with %s
 	-- Example: open_cmd = 'firefox %s -P typst-preview --class typst-preview'
-	open_cmd = "firefox %s -P tinymist",
+	-- open_cmd = "firefox %s -P tinymist",
+	open_cmd = "",
 
 	-- Setting this to 'always' will invert black and white in the preview
 	-- Setting this to 'auto' will invert depending if the browser has enable
@@ -47,6 +48,8 @@ require("typst-preview").setup({
 
 	-- Whether the preview will follow the cursor in the source file
 	follow_cursor = true,
+
+	port = 8596,
 
 	-- Provide the path to binaries for dependencies.
 	-- Setting this will skip the download of the binary by the plugin.
@@ -62,9 +65,10 @@ require("typst-preview").setup({
 
 	-- This function will be called to determine the root of the typst project
 	get_root = function(path_of_main_file)
-		local root = os.getenv("TYPST_ROOT")
-		if root then
-			return root
+		local gitDir = vim.fn.finddir(".git", vim.fn.expand("%:p") .. ";")
+		if gitDir ~= "" then
+			-- .git directory is found
+			return vim.fn.fnamemodify(gitDir, ":h")
 		end
 		return vim.fn.fnamemodify(path_of_main_file, ":p:h")
 	end,
@@ -74,6 +78,24 @@ require("typst-preview").setup({
 	get_main_file = function(path_of_buffer)
 		return path_of_buffer
 	end,
+})
+
+vim.api.nvim_create_augroup("TypstAutocmds", { clear = true })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*.typ",
+	callback = function(opts)
+		if vim.bo[opts.buf].filetype == "typst" then
+			local servers = require("typst-preview.servers")
+			servers.remove_all()
+			-- NOTE: I don't know why defer_fn will make it work
+			-- This supposedly will make it run in the next event loop
+			vim.defer_fn(function()
+				vim.cmd("TypstPreview")
+			end, 0)
+		end
+	end,
+	group = "TypstAutocmds",
 })
 
 -- It's required for us to write in vim script I am afraid

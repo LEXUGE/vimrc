@@ -16,7 +16,10 @@
   plugins.diffview.enable = true;
 
   # Required by illustrate.nvim
-  plugins.notify.enable = true;
+  plugins.notify = {
+    enable = true;
+    backgroundColour = "#000000";
+  };
   # Inkscape integration
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {

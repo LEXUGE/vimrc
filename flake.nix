@@ -41,7 +41,9 @@
             overlays = [
               (final: prev: {
                 vimPlugins = prev.vimPlugins.extend (
-                  prev.callPackage ./vim_plugin_overrides.nix { buildVimPlugin = prev.vimUtils.buildVimPlugin; }
+                  prev.callPackage ./vim_plugin_overrides.nix {
+                    buildVimPlugin = prev.vimUtils.buildVimPlugin;
+                  }
                 );
               })
             ];
