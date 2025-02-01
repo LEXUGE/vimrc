@@ -6,6 +6,7 @@ local i = ls.insert_node
 local f = ls.function_node
 local d = ls.dynamic_node
 local fmta = require("luasnip.extras.fmt").fmta
+local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
 local get_visual = function(args, parent)
@@ -33,9 +34,13 @@ return {
 
 	s(
 		{ name = "Import Preamble", trig = "_pre", snippetType = "autosnippet" },
-		t({
-			'#import "/preamble.typ": *',
-		})
+		fmt(
+			[[
+	#import "/preamble.typ": *
+	#show: setup.with("{1}")
+	]],
+			{ d(1, get_visual) }
+		)
 	),
 
 	s(
