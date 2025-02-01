@@ -1,11 +1,17 @@
 { pkgs, ... }:
 {
-  extraPlugins = [ pkgs.vimPlugins.julia-vim ];
+  extraPlugins = with pkgs.vimPlugins; [
+    julia-vim
+    typst-preview-nvim
+  ];
   extraPackages = with pkgs; [
     stylua
     black
     nixfmt-rfc-style
     taplo
+
+    tinymist
+    websocat
   ];
 
   extraFiles = {

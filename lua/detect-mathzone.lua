@@ -18,6 +18,9 @@ local MATH_ENVIRONMENTS = {
 local MATH_NODES = {
 	displayed_equation = true,
 	inline_formula = true,
+	-- typst
+	math = true,
+	formula = true,
 }
 
 local function get_node_at_cursor()
