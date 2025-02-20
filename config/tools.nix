@@ -18,7 +18,7 @@
   # Required by illustrate.nvim
   plugins.notify = {
     enable = true;
-    backgroundColour = "#000000";
+    settings.background_colour = "#000000";
   };
   # Inkscape integration
   extraPlugins = [

@@ -36,36 +36,74 @@ return {
 		{ condition = in_mathzone }
 	),
 
+	s({
+		name = "Superscript",
+		trig = "ss",
+		wordTrig = true,
+		snippetType = "autosnippet",
+	}, t("^"), { condition = in_mathzone }),
+
 	s(
 		{
-			name = "Superscript",
-			trig = "([%w%)%]%}])^",
-			wordTrig = false,
-			regTrig = true,
+			name = "Definition",
+			trig = "_def",
+			wordTrig = true,
 			snippetType = "autosnippet",
 		},
-		fmta("<>^(<>)", {
-			f(function(_, snip)
-				return snip.captures[1]
-			end),
+		fmta('#definition(name: "<>")[<>]', {
+			d(1, get_visual),
+			i(2),
+		})
+	),
+
+	s(
+		{
+			name = "Theorem",
+			trig = "_thm",
+			wordTrig = true,
+			snippetType = "autosnippet",
+		},
+		fmta('#theorem(name: "<>")[<>]', {
+			d(1, get_visual),
+			i(2),
+		})
+	),
+
+	s(
+		{
+			name = "Superscript with bracket",
+			trig = "ssb",
+			wordTrig = true,
+			snippetType = "autosnippet",
+		},
+		fmta("^(<>)", {
 			d(1, get_visual),
 		}),
 		{ condition = in_mathzone }
 	),
 
+	-- s(
+	-- 	{
+	-- 		name = "Subscript",
+	-- 		trig = "([%w%)%]%}])_",
+	-- 		wordTrig = false,
+	-- 		regTrig = true,
+	-- 		snippetType = "autosnippet",
+	-- 	},
+	-- 	fmta("<>_(<>)", {
+	-- 		f(function(_, snip)
+	-- 			return snip.captures[1]
+	-- 		end),
+	-- 		d(1, get_visual),
+	-- 	}),
+	-- 	{ condition = in_mathzone }
+	-- ),
+
 	s(
-		{
-			name = "Subscript",
-			trig = "([%w%)%]%}])_",
-			wordTrig = false,
-			regTrig = true,
-			snippetType = "autosnippet",
-		},
-		fmta("<>_(<>)", {
-			f(function(_, snip)
-				return snip.captures[1]
-			end),
+		{ name = "Tensor", trig = "tt", snippetType = "autosnippet" },
+		fmta("tensor(<>, <>)", {
 			d(1, get_visual),
+			i(2),
 		}),
 		{ condition = in_mathzone }
 	),
@@ -90,6 +128,16 @@ return {
 		fmta("integral <> dd(<>)", {
 			d(1, get_visual),
 			i(2, "x"),
+		}),
+		{ condition = in_mathzone }
+	),
+
+	s(
+		{ name = "Sum", trig = "sum", snippetType = "autosnippet" },
+		fmta("sum_(<>)^(<>) <>", {
+			i(1, "i=0"),
+			i(2, "oo"),
+			d(3, get_visual),
 		}),
 		{ condition = in_mathzone }
 	),

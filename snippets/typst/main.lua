@@ -44,6 +44,23 @@ return {
 	),
 
 	s(
+		{ name = "Figure", trig = "_fig", snippetType = "autosnippet" },
+		fmt(
+			[[
+			#figure(
+			  image("{1}"),
+			  caption: [{2}],
+			) <{3}>
+			]],
+			{
+				i(1, "path.jpg"),
+				d(2, get_visual),
+				d(3, get_visual),
+			}
+		)
+	),
+
+	s(
 		{ name = "Useful packages", trig = "_pkg", snippetType = "autosnippet" },
 		t({
 			'#import "@preview/physica:0.9.4": *',
