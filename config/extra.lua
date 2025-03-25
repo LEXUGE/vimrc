@@ -124,7 +124,7 @@ local untrigger = function()
 	vim.fn.setpos(".", { 0, node_from[1] + 1, node_from[2] + 1 + string.len(trig) })
 end
 
-vim.keymap.set({ "i", "s" }, "<c-x>", function()
+vim.keymap.set({ "i", "s" }, "<c-c>", function()
 	if require("luasnip").in_snippet() then
 		untrigger()
 		require("luasnip").unlink_current()
