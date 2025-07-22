@@ -14,6 +14,24 @@
     "lua/detect-mathzone.lua".source = ../lua/detect-mathzone.lua;
   };
 
+  # GitHub Copilot
+  plugins.copilot-lua = {
+    enable = true;
+    # disabling these as they could interfer with copilot-cmp
+    settings = {
+      suggestion.enabled = false;
+      panel.enabled = false;
+    };
+  };
+  plugins.copilot-cmp.enable = true;
+  # setup the symbols for copilot
+  plugins.lspkind = {
+    enable = true;
+    symbolMap = {
+      Copilot = "";
+    };
+  };
+
   plugins.luasnip = {
     enable = true;
     settings = {
@@ -144,6 +162,10 @@
     autoEnableSources = true;
     settings = {
       sources = [
+        {
+          name = "copilot";
+          group_index = 2;
+        }
         { name = "async_path"; }
         { name = "nvim_lsp_signature_help"; }
         {

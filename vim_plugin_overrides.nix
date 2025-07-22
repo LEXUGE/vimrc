@@ -8,10 +8,10 @@ final: prev: {
     buildVimPlugin {
       name = "typst-preview.nvim";
       src = fetchFromGitHub {
-        owner = "floaterest";
+        owner = "chomosuke";
         repo = "typst-preview.nvim";
-        rev = "ef8a064a592ce7fbf50d0f4ec18436f5ade98a3b";
-        hash = "sha256-+6awyJNp4XShEyzvz8isu63xeUaplGNp2e8AwuuHoOg=";
+        rev = "v1.3.2";
+        hash = "sha256-BGNgGpg6ixvQ7bZl1pFRi3B1lqKDZqI4Ix3gFQVFxXg=";
       };
     }
   );
