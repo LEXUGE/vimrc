@@ -8,6 +8,7 @@
     black
     nixfmt-rfc-style
     taplo
+    nickel
   ];
 
   extraFiles = {
@@ -119,10 +120,17 @@
     '';
   };
 
+  # Nickel support
+  filetype.extension = {
+    ncl = "nickel";
+  };
+
   plugins.lsp = {
     servers = {
       # Nix LSP
       nil_ls.enable = true;
+
+      nickel_ls.enable = true;
 
       # Rust LSP
       rust_analyzer = {
@@ -274,6 +282,8 @@
       nix = [ "nixfmt" ];
       lua = [ "stylua" ];
       rust = [ "rustfmt" ];
+
+      nickel = [ "nickel" ];
 
       # Conform will run multiple formatters sequentially
       python = [ "black" ];
