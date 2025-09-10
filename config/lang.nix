@@ -59,25 +59,25 @@
   # };
 
   # Typst related
-  plugins.typst-preview = {
-    enable = true;
-    settings = {
-      debug = true;
-      open_cmd = "";
-      port = 8596;
-      get_root.__raw = ''
-        function(path_of_main_file)
-         	local gitDir = vim.fn.finddir(".git", vim.fn.fnameescape(vim.fn.fnamemodify(path_of_main_file, ":p")) .. ";")
-         	if gitDir ~= "" then
-         		-- .git directory is found
-                        -- :p gives the full path, :h gets rid of the trailing slash, :h again gives the parent directory
-         		return vim.fn.fnamemodify(gitDir, ":p:h:h")
-         	end
-         	return vim.fn.fnamemodify(path_of_main_file, ":p:h")
-         end
-      '';
-    };
-  };
+  # plugins.typst-preview = {
+  #   enable = false;
+  #   settings = {
+  #     debug = true;
+  #     open_cmd = "";
+  #     port = 8596;
+  #     get_root.__raw = ''
+  #       function(path_of_main_file)
+  #        	local gitDir = vim.fn.finddir(".git", vim.fn.fnameescape(vim.fn.fnamemodify(path_of_main_file, ":p")) .. ";")
+  #        	if gitDir ~= "" then
+  #        		-- .git directory is found
+  #                       -- :p gives the full path, :h gets rid of the trailing slash, :h again gives the parent directory
+  #        		return vim.fn.fnamemodify(gitDir, ":p:h:h")
+  #        	end
+  #        	return vim.fn.fnamemodify(path_of_main_file, ":p:h")
+  #        end
+  #     '';
+  #   };
+  # };
 
   plugins.lsp = {
     enable = true;

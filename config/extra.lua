@@ -28,23 +28,23 @@ require("illustrate").setup({
 	},
 })
 
-vim.api.nvim_create_augroup("TypstAutocmds", { clear = true })
-
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "*.typ",
-	callback = function(opts)
-		if vim.bo[opts.buf].filetype == "typst" then
-			local servers = require("typst-preview.servers")
-			servers.remove_all()
-			-- NOTE: I don't know why defer_fn will make it work
-			-- This supposedly will make it run in the next event loop
-			vim.defer_fn(function()
-				vim.cmd("TypstPreview")
-			end, 0)
-		end
-	end,
-	group = "TypstAutocmds",
-})
+-- vim.api.nvim_create_augroup("TypstAutocmds", { clear = true })
+--
+-- vim.api.nvim_create_autocmd("BufEnter", {
+-- 	pattern = "*.typ",
+-- 	callback = function(opts)
+-- 		if vim.bo[opts.buf].filetype == "typst" then
+-- 			local servers = require("typst-preview.servers")
+-- 			servers.remove_all()
+-- 			-- NOTE: I don't know why defer_fn will make it work
+-- 			-- This supposedly will make it run in the next event loop
+-- 			vim.defer_fn(function()
+-- 				vim.cmd("TypstPreview")
+-- 			end, 0)
+-- 		end
+-- 	end,
+-- 	group = "TypstAutocmds",
+-- })
 
 -- It's required for us to write in vim script I am afraid
 vim.cmd([[
