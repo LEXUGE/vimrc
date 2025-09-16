@@ -130,7 +130,8 @@
       # Nix LSP
       nil_ls.enable = true;
 
-      nickel_ls.enable = true;
+      # NOTE: Nickel_ls has serious memory leak problem
+      # nickel_ls.enable = true;
 
       # Rust LSP
       rust_analyzer = {
