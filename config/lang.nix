@@ -33,6 +33,10 @@
     };
   };
 
+  plugins.jdtls = {
+    enable = true;
+  };
+
   plugins.luasnip = {
     enable = true;
     settings = {
@@ -142,6 +146,14 @@
 
       # Python LSP
       pyright.enable = true;
+
+      jdtls = {
+        enable = true;
+        rootMarkers = [
+          ".git"
+          "pom.xml"
+        ];
+      };
 
       tinymist = {
         enable = true;
