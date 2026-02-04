@@ -7,6 +7,7 @@
     stylua
     black
     nixfmt-rfc-style
+    google-java-format
     taplo
     nickel
   ];
@@ -297,6 +298,8 @@
       rust = [ "rustfmt" ];
 
       nickel = [ "nickel" ];
+
+      java = [ "google-java-format" ];
 
       # Conform will run multiple formatters sequentially
       python = [ "black" ];
