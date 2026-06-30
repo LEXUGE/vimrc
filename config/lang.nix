@@ -143,6 +143,7 @@
         enable = true;
         installCargo = false;
         installRustc = false;
+        package = null;
       };
 
       # Python LSP
