@@ -29,7 +29,7 @@
 
       flake.overlays.default = (
         final: prev: {
-          nvim = self.packages.${prev.system}.nvim;
+          nvim = self.packages.${prev.stdenv.hostPlatform.system}.nvim;
         }
       );
 
